@@ -1,0 +1,104 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.9.0
+  creationTimestamp: null
+  name: nodes.topo.yndd.io
+spec:
+  group: topo.yndd.io
+  names:
+    categories:
+    - yndd
+    - topo
+    kind: Node
+    listKind: NodeList
+    plural: nodes
+    singular: node
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.kind=='Synced')].status
+      name: SYNC
+      type: string
+    - jsonPath: .status.conditions[?(@.kind=='Ready')].status
+      name: STATUS
+      type: string
+    - jsonPath: .status.oda.organization
+      name: ORG
+      type: string
+    - jsonPath: .status.oda.deployment
+      name: DEP
+      type: string
+    - jsonPath: .status.oda.availabilityZone
+      name: AZ
+      type: string
+    - jsonPath: .status.oda.resourceName
+      name: TOPO
+      type: string
+    - jsonPath: .spec.properties.vendorType
+      name: VENDORTYPE
+      type: string
+    - jsonPath: ..spec.properties.platform
+      name: PLATFORM
+      type: string
+    - jsonPath: ..spec.properties.position
+      name: POSITION
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Node is the Schema for the Node API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: NodeSpec struct
+            properties:
+              properties:
+                description: Properties define the properties of the Topology
+                properties:
+                  expectedSwVersion:
+                    type: string
+                  location:
+                    properties:
+                      latitude:
+                        type: string
+                      longitude:
+                        type: string
+                    type: object
+                  macAddress:
+                    type: string
+                  mgmtIPAddress:
+                    type: string
+                  platform:
+                    type: string
+                  position:
+                    type: string
+                  serialNumber:
+                    type: string
+                  tag:
+                    additionalProperties:
+                      type: string
+                    type: object
+                  vendorType:
+                    type: string
+                type: object
+            type: object
+          status:
+            description: A NodeStatus represents the observed state of a node.
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

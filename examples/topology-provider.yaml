@@ -1,0 +1,8 @@
+apiVersion: pkg.ndd.yndd.io/v1
+kind: Provider
+metadata:
+  name: topology-provider
+  namespace: ndd-system
+spec:
+  package: yndd/topology-provider:latest
+  packagePullPolicy: Always

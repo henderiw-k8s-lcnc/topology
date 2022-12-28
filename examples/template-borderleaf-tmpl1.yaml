@@ -1,0 +1,22 @@
+apiVersion: topo.yndd.io/v1alpha1
+kind: Template
+metadata:
+  name: bl-tmpl1
+  namespace: default
+spec:
+  properties:
+    fabric:
+      settings:
+        maxUplinksTier2ToTier1: 2
+        maxUplinksTier3ToTier2: 2
+        maxSpinesPerPod: 2
+      borderLeaf:
+        num: 2
+        vendorInfo:
+        - vendorType: nokiaSRL
+          platform: "IXR-D3"
+      pod:
+      - templateRef: 
+          name: pod-type1
+      - templateRef: 
+          name: pod-type1

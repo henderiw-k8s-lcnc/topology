@@ -1,0 +1,13 @@
+apiVersion: topo.yndd.io/v1alpha1
+kind: Definition
+metadata:
+  name: fabric2
+  namespace: default
+spec:
+  properties:
+    location:
+      latitude: "a"
+      longitude: "b"
+    templates:
+    - templateRef:
+        name: ss-tmpl2

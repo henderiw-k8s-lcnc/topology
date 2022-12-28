@@ -1,0 +1,10 @@
+apiVersion: topo.yndd.io/v1alpha1
+kind: Definition
+metadata:
+  name: fabric1
+  namespace: default
+spec:
+  properties:
+    discoveryRules:
+    - discoveryRuleRef:
+        name: dr1

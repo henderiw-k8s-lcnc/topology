@@ -1,0 +1,142 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.9.0
+  creationTimestamp: null
+  name: links.topo.yndd.io
+spec:
+  group: topo.yndd.io
+  names:
+    categories:
+    - yndd
+    - topo
+    kind: Link
+    listKind: LinkList
+    plural: links
+    singular: link
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.kind=='Synced')].status
+      name: SYNC
+      type: string
+    - jsonPath: .status.conditions[?(@.kind=='Ready')].status
+      name: STATUS
+      type: string
+    - jsonPath: .status.oda.organization
+      name: ORG
+      type: string
+    - jsonPath: .status.oda.deployment
+      name: DEP
+      type: string
+    - jsonPath: .status.oda.availabilityZone
+      name: AZ
+      type: string
+    - jsonPath: .status.oda.resourceName
+      name: TOPO
+      type: string
+    - jsonPath: .spec.properties.lag
+      name: LAG
+      type: boolean
+    - jsonPath: .spec.properties.lagmember
+      name: MEMBER
+      type: boolean
+    - jsonPath: .spec.properties.endpoints[0].nodeName
+      name: NODE-EPA
+      type: string
+    - jsonPath: .spec.properties.endpoints[0].interfaceName
+      name: ITFCE-EPA
+      type: string
+    - jsonPath: .spec.properties.endpoints[0].multiHomingName
+      name: MH-EPA
+      type: string
+    - jsonPath: .spec.properties.endpoints[1].nodeName
+      name: NODE-EPB
+      type: string
+    - jsonPath: .spec.properties.endpoints[1].interfaceName
+      name: ITFCE-EPB
+      type: string
+    - jsonPath: .spec.properties.endpoints[1].multiHomingName
+      name: MH-EPB
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Link is the Schema for the Link API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: TopologyLinkSpec struct
+            properties:
+              properties:
+                description: Properties define the properties of the Topology
+                properties:
+                  endpoints:
+                    items:
+                      description: LinkEndpoints struct
+                      properties:
+                        endpointGroup:
+                          type: string
+                        interfaceName:
+                          description: kubebuilder:validation:MinLength=3 kubebuilder:validation:MaxLength=20
+                          pattern: int-([1-9](\d){0,1}(/[abcd])?(/[1-9](\d){0,1})?/(([1-9](\d){0,1})|(1[0-1]\d)|(12[0-8])))|
+                          type: string
+                        kind:
+                          type: string
+                        lacpFallback:
+                          type: boolean
+                        lagName:
+                          type: string
+                        multiHoming:
+                          type: boolean
+                        multiHomingName:
+                          type: string
+                        nodeName:
+                          type: string
+                        tag:
+                          additionalProperties:
+                            type: string
+                          type: object
+                      required:
+                      - interfaceName
+                      - nodeName
+                      type: object
+                    type: array
+                  kind:
+                    type: string
+                  lacp:
+                    type: boolean
+                  lag:
+                    type: boolean
+                  lagMember:
+                    type: boolean
+                  tag:
+                    additionalProperties:
+                      type: string
+                    type: object
+                type: object
+            type: object
+          status:
+            description: A LinkStatus represents the observed state of a Link.
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
