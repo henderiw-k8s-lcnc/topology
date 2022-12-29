@@ -36,6 +36,9 @@ func (x *FabricTemplate) CheckTemplate(master bool) error {
 	if x.Tier1 != nil && x.BorderLeaf != nil {
 		return fmt.Errorf("a template cannot have a mix of tier1 and boarderleafs")
 	}
+	if !master && (x.Tier1 != nil || x.BorderLeaf != nil) {
+		return fmt.Errorf("a child template cannot have tier1 or borderleafs defined")
+	}
 	if x.Pod == nil {
 		return nil
 	}
