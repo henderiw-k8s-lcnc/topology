@@ -7,8 +7,9 @@ const (
 	LabelKeyTopologyPlaneIndex        = "topology.yndd.io/PlaneIndex"
 	LabelKeyTopologyPlatform          = "topology.yndd.io/Platform"
 	LabelKeyTopologyVendorType        = "topology.yndd.io/VendorType"
+	LabelKeyTopology                  = "topology.yndd.io/Topology"
 	//LabelKeyOrganization              = "org.yndd.io/Organization"
 	//LabelKeyDeployment                = "org.yndd.io/Deployment"
 	//LabelKeyAvailabilityZone          = "org.yndd.io/Availabilityzone"
-	//LabelKeyTopology                  = "org.yndd.io/Topology"
+
 )
