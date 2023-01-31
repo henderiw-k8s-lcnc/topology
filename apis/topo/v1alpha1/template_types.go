@@ -47,12 +47,12 @@ import (
 */
 
 type SupportServers struct {
-	DnsServers []*string `json:"dnsServers,omitempty"`
-	NtPServers []*string `json:"ntpServers,omitempty"`
+	DnsServers []string `json:"dnsServers,omitempty"`
+	NtpServers []string `json:"ntpServers,omitempty"`
 }
 
-type TemplateSubnet struct {
-	IPSubnet       string `json:"ipSubnet,omitempty"`
+type TemplateNetwork struct {
+	NetworkName    string `json:"networkName,omitempty"`
 	SupportServers `json:"inline,omitempty"`
 }
 
@@ -140,8 +140,8 @@ type Range struct {
 // TemplateProperties define the properties of the Template
 type TemplateProperties struct {
 	SupportServers `json:"inline,omitempty"`
-	Subnet         *TemplateSubnet `json:"subnet,omitempty"`
-	Fabric         *FabricTemplate `json:"fabric,omitempty"`
+	Network        *TemplateNetwork `json:"network,omitempty"`
+	Fabric         *FabricTemplate  `json:"fabric,omitempty"`
 }
 
 // TemplateSpec struct
@@ -152,7 +152,7 @@ type TemplateSpec struct {
 
 // A TemplateStatus represents the observed state of a Template.
 type TemplateStatus struct {
-	TopologyName         string `json:"topology-name,omitempty"`
+	TopologyName string `json:"topology-name,omitempty"`
 	//Topology                *NddrTopologyTopology `json:"topology,omitempty"`
 }
 

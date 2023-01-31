@@ -5,6 +5,12 @@ metadata:
   namespace: default
 spec:
   properties:
+    network:
+      networkInstanceName: mgmt
+      addressingScheme: dual-stack
+      prefixes: [10.0.0.0/16, 2000::/56]
+      ntpServers: [1.2.3.4, 2.3.4.5]
+      dnsServers: [8.8.8.8, 8.8.4.4]
     fabric:
       settings:
         maxUplinksTier2ToTier1: 4

@@ -343,7 +343,7 @@ spec:
                           type: string
                         type: array
                     type: object
-                  subnet:
+                  network:
                     properties:
                       inline:
                         properties:
@@ -356,7 +356,7 @@ spec:
                               type: string
                             type: array
                         type: object
-                      ipSubnet:
+                      networkName:
                         type: string
                     type: object
                 type: object
