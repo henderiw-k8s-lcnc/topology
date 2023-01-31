@@ -51,13 +51,13 @@ spec:
             platform: "IXR-D3"
       - templateRef: 
           name: pod-type1 # num pods must be 1, must not have a tier1, must not have another template
-      - templateRef: 
-          name: pod-type1 # num pods must be 1, must not have a tier1, must not have another template
-      - templateRef: 
-          name: pod-type1 # num pods must be 1, must not have a tier1, must not have another template
-      - templateRef: 
-          name: pod-type1 # num pods must be 1, must not have a tier1, must not have another template
-      - templateRef: 
-          name: pod-type1 # num pods must be 1, must not have a tier1, must not have another template
-      - templateRef: 
-          name: pod-type1 # num pods must be 1, must not have a tier1, must not have another template
+#      - templateRef: 
+#          name: pod-type1 # num pods must be 1, must not have a tier1, must not have another template
+#      - templateRef: 
+#          name: pod-type1 # num pods must be 1, must not have a tier1, must not have another template
+#      - templateRef: 
+#          name: pod-type1 # num pods must be 1, must not have a tier1, must not have another template
+#      - templateRef: 
+#          name: pod-type1 # num pods must be 1, must not have a tier1, must not have another template
+#      - templateRef: 
+#          name: pod-type1 # num pods must be 1, must not have a tier1, must not have another template
